@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Monitoring System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JavaScript -->
+    <script src="js/api.js" defer></script>
+    <script src="js/admin-pin.js" defer></script>
+    <script src="js/clock-in.js" defer></script>
+    <script src="script.js" defer></script>
+    
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <!-- SCHOOL BRAND -->
+            <div class="brand">
+
+                <div class="school-mark">
+                    <img src="CTU Logo.png" alt="CTU Logo">
+                </div>
+
+                <div class="brand-copy">
+                    <strong>CTU - Ginatilan Extension Campus</strong>
+                    <span>Attendance Monitoring System</span>
+                </div>
+
+                <div class="campus-mark">
+                    <img src="CTU Logo of Ginatilan.png" alt="Ginatilan Logo">
+                </div>
+
+            </div>
+
+            <!-- NAVIGATION -->
+            <nav class="navigation">
+
+                <a href="index.html" class="nav-link active">
+                    <span class="nav-icon">◷</span>
+                    <span>Clock in</span>
+                </a>
+
+                <button class="nav-link protected-link"
+                    data-page="dashboard.html" type="button">
+                    <span class="nav-icon">◆</span>
+                    <span>Dashboard</span>
+                    <span class="lock">🔒</span>
+                </button>
+
+                <button class="nav-link protected-link"
+                    data-page="students.html" type="button">
+                    <span class="nav-icon">♟</span>
+                    <span>Students</span>
+                    <span class="lock">🔒</span>
+                </button>
+
+                <button class="nav-link protected-link"
+                    data-page="logs.html" type="button">
+                    <span class="nav-icon">▤</span>
+                    <span>Logs</span>
+                    <span class="lock">🔒</span>
+                </button>
+
+                <button class="nav-link protected-link"
+                    data-page="reports.html" type="button">
+                    <span class="nav-icon">▧</span>
+                    <span>Reports</span>
+                    <span class="lock">🔒</span>
+                </button>
+
+                <button class="nav-link protected-link"
+                    data-page="settings.html" type="button">
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                    <span class="lock">🔒</span>
+                </button>
+
+            </nav>
+
+            <!-- TOGGLE THEME -->
+            <button class="theme-toggle" id="themeToggle" type="button">
+
+                <span class="toggle-dot"></span>
+                <span>Toggle Theme</span>
+
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- PAGE HEADER -->
+            <header class="page-header">
+
+                <div>
+                    <h1>Clock in</h1>
+                    <p>Attendance Monitoring System</p>
+                </div>
+
+                <time class="small-time" id="smallTime">
+                    Loading time...
+                </time>
+
+            </header>
+
+
+            <!-- ATTENDANCE SCHEDULE -->
+            <section class="schedule-card">
+
+                <h2 id="todayDate">Loading date...</h2>
+
+                <div class="digital-clock" id="digitalClock">
+                    00:00:00
+                </div>
+
+                <p class="schedule-label">
+                    Student Attendance Schedule:
+                </p>
+
+                <div class="schedule-list">
+
+                    <div class="schedule-pill">
+                        1. AM Class Check-In
+                    </div>
+
+                    <div class="schedule-pill">
+                        2. AM Attendance Recorded
+                    </div>
+
+                    <div class="schedule-pill">
+                        3. PM Class Check-In
+                    </div>
+
+                    <div class="schedule-pill">
+                        4. PM Attendance Recorded
+                    </div>
+
+                </div>
+
+                <p class="grace-note">
+                    Grace period: 10 minutes. Attendance status
+                    (Present, Late, or Absent) is automatically
+                    determined based on each student's class schedule.
+                </p>
+
+            </section>
+
+
+            <!-- CAMERA ATTENDANCE SECTION -->
+            <section class="camera-card">
+
+                <!-- CAMERA OPTIONS -->
+                <div class="camera-tabs">
+
+                    <button class="camera-tab selected"
+                        id="faceTab" type="button">
+                        ◎ Face
+                    </button>
+
+                    <button class="camera-tab"
+                        id="pinTab" type="button">
+                        ▦ ID / PIN
+                    </button>
+
+                </div>
+
+
+                <!-- CAMERA SCREEN -->
+                <div class="camera-screen" id="cameraScreen">
+
+                    <video id="cameraVideo"
+                        autoplay
+                        playsinline
+                        muted
+                        hidden>
+                    </video>
+
+                    <div class="camera-message" id="cameraMessage">
+
+                        <strong>Camera is off.</strong>
+
+                        <span>
+                            Press Start camera and look at the lens.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAMERA FOOTER -->
+                <div class="camera-footer">
+
+                    <p id="cameraStatus">
+                        No faces enrolled yet.
+                        Add them in Students, then Enroll face.
+                    </p>
+
+                    <button class="start-camera"
+                        id="startCamera" type="button">
+                        Start Camera
+                    </button>
+
+                    <button class="stop-camera"
+                        id="stopCamera" type="button" hidden>
+                        Stop Camera
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ADMIN PIN MODAL -->
+    <div class="modal-backdrop" id="pinModal" hidden>
+
+        <section class="pin-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle">
+
+            <!-- MODAL HEADER -->
+            <div class="modal-heading">
+
+                <h2 id="modalTitle">Admin PIN</h2>
+
+                <button class="close-modal"
+                    id="closeModal" type="button">
+                    Close
+                </button>
+
+            </div>
+
+
+            <!-- ADMIN PIN FORM -->
+            <form id="adminPinForm">
+
+                <label for="adminPin">
+                    Enter admin PIN
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPin"
+                    name="adminPin"
+                    placeholder="Enter your PIN"
+                    maxlength="12"
+                    inputmode="numeric"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <p class="pin-help" id="pinHelp">
+                    Enter your administrator PIN to continue.
+                </p>
+
+                <p class="pin-error" id="pinError" hidden>
+                </p>
+
+
+                <!-- UNLOCK BUTTON -->
+                <div class="modal-actions">
+
+                    <button class="unlock-button"
+                        id="unlockButton" type="submit">
+                        Unlock
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

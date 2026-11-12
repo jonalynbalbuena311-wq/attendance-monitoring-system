@@ -1,0 +1,747 @@
+
+/* =====================================
+   ATTENDANCE MONITORING SYSTEM
+   MAIN CSS DESIGN
+===================================== */
+
+/* GENERAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 25px;
+}
+
+/* =====================================
+   COLOR VARIABLES
+===================================== */
+
+:root {
+    --sidebar-bg: #263b56;
+    --main-bg: #263b56;
+    --card-bg: #081f3d;
+    --border-color: #078cff;
+    --primary-blue: #078cff;
+    --cyan: #42b1d4;
+    --text-color: #ffffff;
+    --muted-text: #8eafd6;
+    --green: #a4d59d;
+}
+
+/* =====================================
+   MAIN APP CONTAINER
+===================================== */
+
+.app-shell {
+    width: 100%;
+    max-width: 1180px;
+    min-height: 650px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 285px 1fr;
+
+    background: var(--main-bg);
+}
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+.sidebar {
+    background: var(--sidebar-bg);
+    padding: 16px 14px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* SCHOOL BRAND */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.school-mark {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.school-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.brand-copy strong {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.brand-copy span {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.campus-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.campus-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* =====================================
+   SIDEBAR NAVIGATION
+===================================== */
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 30px;
+}
+
+.nav-link {
+    width: 100%;
+    min-height: 34px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: transparent;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    text-decoration: none;
+    text-align: left;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav-link:hover {
+    background: #ffffff20;
+}
+
+/* ACTIVE CLOCK IN */
+
+.nav-link.active {
+    background: var(--cyan);
+    color: white;
+}
+
+/* NAVIGATION ICON */
+
+.nav-icon {
+    width: 18px;
+    text-align: center;
+    font-size: 17px;
+}
+
+/* LOCK ICON */
+
+.lock {
+    margin-left: auto;
+    color: #1476b5;
+    font-size: 13px;
+}
+
+/* =====================================
+   TOGGLE THEME
+===================================== */
+
+.theme-toggle {
+    margin-top: 38px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 8px 13px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #a3d0df;
+    color: #10243a;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.toggle-dot {
+    width: 17px;
+    height: 10px;
+
+    background: #10243a;
+    border-radius: 20px;
+
+    position: relative;
+}
+
+.toggle-dot::after {
+    content: "";
+
+    position: absolute;
+    top: 1px;
+    right: 1px;
+
+    width: 8px;
+    height: 8px;
+
+    background: white;
+    border-radius: 50%;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+.main-content {
+    min-width: 0;
+    padding: 32px 28px 28px;
+}
+
+/* PAGE HEADER */
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 15px;
+    margin-bottom: 14px;
+    margin-left: 4px;
+}
+
+.page-header h1 {
+    color: var(--text-color);
+    font-size: 27px;
+    margin-bottom: 3px;
+}
+
+.page-header p {
+    color: #8AAEE3;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* SMALL TIME */
+
+.small-time {
+    color: #8fb5e1;
+
+    border: 1px solid #087dff;
+    border-radius: 15px;
+
+    padding: 3px 13px;
+    font-size: 10px;
+}
+
+/* =====================================
+   ATTENDANCE SCHEDULE CARD
+===================================== */
+
+.schedule-card {
+    background: var(--card-bg);
+
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+
+    padding: 10px 25px 11px;
+    margin-bottom: 10px;
+}
+
+.schedule-card h2 {
+    color: var(--text-color);
+    font-size: 21px;
+    margin-bottom: 0;
+}
+
+/* DIGITAL CLOCK */
+
+.digital-clock {
+    text-align: center;
+
+    color: var(--text-color);
+
+    font-size: clamp(38px, 5vw, 53px);
+    font-weight: 800;
+
+    line-height: 1.12;
+    letter-spacing: 1px;
+}
+
+/* SCHEDULE LABEL */
+
+.schedule-label {
+    color: var(--muted-text);
+    font-size: 11px;
+    margin: 3px 0 7px;
+}
+
+/* SCHEDULE PILLS */
+
+.schedule-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 0 25px;
+}
+
+.schedule-pill {
+    min-height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 4px 7px;
+
+    background: var(--green);
+    color: #173d23;
+
+    border-radius: 20px;
+
+    text-align: center;
+    font-size: 9px;
+    font-weight: bold;
+}
+
+/* GRACE PERIOD */
+
+.grace-note {
+    color: var(--muted-text);
+    font-size: 10px;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+/* =====================================
+   CAMERA CARD
+===================================== */
+
+.camera-card {
+    background: var(--card-bg);
+
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+
+    padding: 14px;
+}
+
+/* CAMERA TABS */
+
+.camera-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    padding: 5px;
+
+    background: #102b4c;
+    border-radius: 12px;
+
+    margin-bottom: 10px;
+}
+
+.camera-tab {
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px;
+
+    background: transparent;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.camera-tab.selected {
+    background: #2e4e70;
+}
+
+/* =====================================
+   CAMERA SCREEN
+===================================== */
+
+.camera-screen {
+    width: 100%;
+    height: 300px;
+
+    background: black;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+    position: relative;
+}
+
+/* VIDEO */
+
+.camera-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CAMERA MESSAGE */
+
+.camera-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    text-align: center;
+    color: white;
+
+    font-size: 12px;
+}
+
+/* =====================================
+   CAMERA FOOTER
+===================================== */
+
+.camera-footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding-top: 12px;
+}
+
+.camera-footer p {
+    color: #e3eaf5;
+    font-size: 12px;
+
+    margin-right: auto;
+}
+
+/* START CAMERA BUTTON */
+
+.start-camera {
+    background: #12652d;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 9px 18px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.start-camera:hover {
+    background: #19843c;
+}
+
+/* STOP CAMERA BUTTON */
+
+.stop-camera {
+    background: #8c2830;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    padding: 9px 18px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* =====================================
+   ADMIN PIN MODAL
+===================================== */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+
+    background: #0007;
+
+    display: grid;
+    place-items: center;
+
+    padding: 18px;
+    z-index: 1000;
+}
+
+.modal-backdrop[hidden] {
+    display: none;
+}
+
+/* MODAL BOX */
+
+.pin-modal {
+    width: min(560px, 100%);
+
+    background: #d0daf0;
+    color: #080d17;
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    box-shadow: 0 14px 45px #0005;
+}
+
+/* MODAL HEADER */
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 11px 22px;
+
+    border-bottom: 1px solid #8192b0;
+}
+
+.modal-heading h2 {
+    font-size: 23px;
+}
+
+/* CLOSE BUTTON */
+
+.close-modal {
+    border: 1px solid #555;
+    border-radius: 4px;
+
+    padding: 3px 12px;
+
+    background: #eeeeee;
+
+    cursor: pointer;
+}
+
+/* PIN FORM */
+
+#adminPinForm {
+    padding: 12px 22px 0;
+}
+
+#adminPinForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#adminPin {
+    width: 100%;
+
+    padding: 11px;
+
+    border: 1px solid #666;
+    border-radius: 8px;
+
+    font-size: 17px;
+    outline-color: #17477d;
+}
+
+/* PIN HELP */
+
+.pin-help {
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+.pin-error {
+    color: #a20f20;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* MODAL ACTIONS */
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin: 12px -22px 0;
+    padding: 10px 22px 12px;
+
+    border-top: 1px solid #8192b0;
+}
+
+/* UNLOCK BUTTON */
+
+.unlock-button {
+    background: #173e70;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    min-width: 90px;
+    padding: 9px 18px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+body.light-mode {
+    --sidebar-bg: #d8d8d8;
+    --main-bg: #d8d8d8;
+    --card-bg: #ffffff;
+
+    --text-color: #080808;
+    --muted-text: #6383a8;
+}
+
+body.light-mode .nav-link {
+    color: #111111;
+}
+
+body.light-mode .nav-link.active {
+    color: white;
+}
+
+body.light-mode .brand-copy strong {
+    color: #111111;
+}
+
+body.light-mode .brand-copy span {
+    color: #27384a;
+}
+
+body.light-mode .page-header p {
+    color:  #8AAEE3;
+}
+
+body.light-mode .camera-tabs {
+    background: #e1e5ea;
+}
+
+body.light-mode .camera-tab {
+    color: #17324e;
+}
+
+body.light-mode .camera-tab.selected {
+    background: white;
+}
+
+body.light-mode .camera-footer p {
+    color: #111111;
+}
+
+body.light-mode .schedule-card h2 {
+    color: #111111;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media screen and (max-width: 760px) {
+
+    body {
+        padding: 0;
+    }
+
+    .app-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 12px;
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .theme-toggle {
+        margin-top: 12px;
+    }
+
+    .main-content {
+        padding: 20px 12px;
+    }
+
+    .schedule-card {
+        padding: 12px;
+    }
+
+    .schedule-list {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
+        gap: 8px;
+    }
+
+    .camera-screen {
+        height: 240px;
+    }
+
+    .digital-clock {
+        font-size: 38px;
+    }
+
+}
